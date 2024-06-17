@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "stackarray.c"
+#include "stackarray.h"
 
 int main() {
     int num;

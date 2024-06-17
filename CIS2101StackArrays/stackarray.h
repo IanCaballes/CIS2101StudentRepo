@@ -1,5 +1,6 @@
 #ifndef stack_array
 #define MAX 10
+#include <stdbool.h>
 
 typedef struct {
     int data[MAX];
