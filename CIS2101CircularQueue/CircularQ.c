@@ -1,52 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include "CircularQ.h"
 
 #define MAX 10
-
-typedef struct {
-	int data[MAX];
-	int front;
-	int rear;
-} CircularQ;
-
-void initialize(CircularQ *array);
-void enqueue(CircularQ *array, int data);
-void dequeue(CircularQ *array);
-bool isFull(CircularQ array);
-bool isEmpty(CircularQ array);
-void display(CircularQ array);
-
-int main(){
-	CircularQ array;
-	int data;
-	
-	initialize(&array);
-	enqueue(&array, 2);
-	enqueue(&array, 6);
-	enqueue(&array, 5);
-	enqueue(&array, 9);
-	enqueue(&array, 8);
-	enqueue(&array, 1);
-	enqueue(&array, 7);
-	enqueue(&array, 3);
-	enqueue(&array, 0);
-	enqueue(&array, 3);
-	
-	display(array);
-}
 
 void initialize(CircularQ *array){
 	array->front = -1;
 	array->rear = -1;
 }
 
-void enqueue(CircularQ *array, int data){
-	
+void enqueue(CircularQ *array, int data){	
 	if(isFull(*array) == false){
 		array->rear = (array->rear + 1) % MAX;
 		array->data[array->rear] = data;
 		printf("%d added\n", array->data[array->rear]);
+	}
+	else{
+		printf("Enqueue Failed\n");
 	}
 	
 }
@@ -54,6 +25,9 @@ void enqueue(CircularQ *array, int data){
 void dequeue(CircularQ *array){
 	if(isEmpty(*array) == true){
 		array->front++;
+	}
+	else{
+		printf("Dequeue Failed\n");
 	}
 }
 
@@ -69,7 +43,7 @@ bool isFull(CircularQ array){
 }
 
 bool isEmpty(CircularQ array){
-	if((array.rear + 1) % MAX == array.front){
+	if(array.data[(array.rear + 1) % MAX == array.front]){
 		printf("EMPTY\n");
 		return true;
 	}
@@ -86,3 +60,4 @@ void display(CircularQ array){
 		printf("[%d]: %d\n", i, array.data[i]);
 	}
 }
+
