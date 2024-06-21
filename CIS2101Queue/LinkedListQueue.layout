@@ -14,5 +14,5 @@ CursorRow=6
 TopLine=1
 LeftChar=1
 [Editors]
-Order=
-Focused=-1
+Order=1,2,0
+Focused=0

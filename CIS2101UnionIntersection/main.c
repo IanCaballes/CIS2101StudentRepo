@@ -8,13 +8,14 @@ int main() {
 	char findset;
 	Array A, B;
 	Array Union, Intersect;
-	while(choice != 5){
+	while(choice != 6){
 		system("cls");
 		printf("1: Add sets\n");
 		printf("2: Insert value\n");
 		printf("3: Delete value\n");
-		printf("4: Display Union & Intersection\n");
-		printf("5: Exit\n");
+		printf("4: Display Union\n");
+		printf("5: Display Intersection\n");
+		printf("6: Exit\n");
 		printf("\nEnter choice: ");
 		scanf("%d", &choice);
 		switch(choice){
@@ -83,6 +84,12 @@ int main() {
 				system("pause");
 				break;
 			case 5:
+				Intersect = findIntrsect(&A, &B);
+				display(Intersect);
+				system("pause");
+				break;
+				
+			case 6:
 				break;
 		}
 	}

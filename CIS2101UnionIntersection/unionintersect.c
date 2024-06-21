@@ -31,34 +31,64 @@ void deleteVal(Array *array, int data){
 	for(i = 0; i < MAX; i++){
 		if(array->array[i] == data){
 			for(j = i; j < array->count; j++){
-				array->array[i] = array->array[j+1];
-				i++;
+				array->array[j] = array->array[j+1];
 			}
-		array->count--;	
+			array->count--;	
 		}
 	}
 }
 
 Array findUnion(Array *array1, Array *array2){
-	int size1 = sizeof(array1) / sizeof(array1->array[0]);
-	int size2 = sizeof(array2) / sizeof(array2->array[0]);
 	Array newarray;
+	int i = 0, j = 0, x = 0;
 	
-	int i = 0, j = 0;
+	newarray.count = 0;
+	newarray.set = 'U';
 	
-	for(i = 0; i < array1->array[array2->count]; i++){
-		newarray.array[i] = array1->array[i];
+	for(i = 0; i < array1->count; i++){
+		newarray.array[j] = array1->array[i];
+		j++;
+		newarray.count++;
 	}
 	
 	i = array1->count;
-	for(j = 0; j < array2->array[array2->count]; j++){
-		newarray.array[i] = array2->array[j];
-		i++;
+	for(i = 0; i < array2->count; i++){
+		newarray.array[j] = array2->array[i];
+		j++;
+		newarray.count++;
 	}
+	
+	for(i = 0; i < newarray.count; i++){
+		for(j = i+1; j < newarray.count; j++){
+			if(newarray.array[i] == newarray.array[j]){
+				for(x = j; x < newarray.count; x++){
+					newarray.array[x] = newarray.array[x+1];
+				}
+				newarray.count--;	
+			}
+		}
+	}
+	
+	return newarray;
 }
 
 Array findIntrsect(Array *array1, Array *array2){
+	Array newarray;
+	int i = 0, j = 0;
 	
+	newarray.count = 0;
+	newarray.set = 'I';
+	
+	for(i = 0; i < array1->count; i++){
+		for(j = 0; j < array2->count; j++){
+			if(array1->array[i] == array2->array[j]){
+				newarray.array[newarray.count] = array2->array[j];
+				newarray.count++;	
+			}
+		}
+	}
+	
+	return newarray;
 }
 
 void display(Array array){
