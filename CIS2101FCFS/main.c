@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "sjf.h"
+#include "fcfs.h"
 
 int main() {
 	int i, n;
 	int letter = 65;
 	Array processes;
+	Array FCFS;
 	Process input;
 	
 	processes.count = 0;
@@ -24,12 +25,16 @@ int main() {
 		
 		input.wt = 0;
 		input.tt = 0;
+		input.et = 0;
 		input.letter = letter++;
 		
 		printf("\n");
 		createProcess(&processes, input);
 	}
-	//try sorting before inserting WIPs
-	sortShortest(processes);
-	displayTable(processes);
+	FCFS = sortFCFS(processes);
+	findValues(&FCFS);
+	displayTable(FCFS);
+	findAverageWT(FCFS);
+	findAverageTT(FCFS);
+	printf("###########################################\n");
 }
