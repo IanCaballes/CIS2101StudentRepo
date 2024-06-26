@@ -1,4 +1,5 @@
 #ifndef hashing
+#include <stdbool.h>
 #define MAX 10
 
 typedef struct node{
@@ -8,13 +9,13 @@ typedef struct node{
 }Node, *NodePtr;
 
 typedef struct{
-	NodePtr array;
+	NodePtr * array;
 	int size;
 	int count;
 }Hashmap;
 
-void initialize(Hashmap *arr);
+void initialize(Hashmap *arr, int size);
 int hashKey(int data, Hashmap arr);
-void insertData(Hashmap *arr, NodePtr input);
-
+void insertData(Hashmap *arr, int data, int key);
+bool isEmpty(NodePtr * node);
 #endif

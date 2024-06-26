@@ -1,20 +1,50 @@
 #include "hashing.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
-void initialize(Hashmap *arr){
-	arr->size = 65;
+void initialize(Hashmap *arr, int size){
+	int i;
+	arr->size = size;
 	arr->count = 0;
 	arr->array = (NodePtr)malloc(sizeof(Node)*arr->size);
 	printf("Hash map initialized!\n");
+	for(i = 0; i < size; i++){
+		arr->array[i] = NULL;
+	}
 }
 
 int hashKey(int data, Hashmap arr){
 	//int key;
 	return data % arr.size;
 }
-void insertData(Hashmap *arr, NodePtr input){
+void insertData(Hashmap *arr, int data, int key){
+	NodePtr newnode = NULL;
+	newnode = (NodePtr)malloc(sizeof(Node));
 	
+	newnode->data = data;
+	newnode->key = key;
+	newnode->next = NULL;
+	
+	if(isEmpty(&arr->array[key]) == true){
+		printf("Position Empty!\n");
+		arr->array[key] = newnode;
+		arr->count++;
+	}
+	else{ //IF COLLISION
+		//for(arr->array[key]; arr->array[key]->next != NULL; arr->array[key] = &arr->array[key]->next)
+		printf("Collision Detected!\n");
+		newnode->next = arr->array[key];
+		arr->array[key] = newnode;
+		arr->count++;
+	}
 }
 
-
+bool isEmpty(NodePtr * node){
+if(*node == NULL){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
