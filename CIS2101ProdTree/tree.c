@@ -5,31 +5,34 @@
 
 void addProd(Product input, NodePtr * node){
 	NodePtr newnode = NULL;
+	NodePtr trav;
+	trav = *node;
 	newnode = malloc(sizeof(NodeType));
 	
 	newnode->item = input;
-	
-	if(node != NULL){
-		for(*node; &node != NULL;){
-			if(strcmp(*node->item.prodName, newnode->item.prodName) <= 0){
-				if(*node->left == NULL){
-					*node->left = newnode;
-					*node->right = NULL;
-				}
-				else{
-					*node = &(*node)->left;
-				}
-			}
-			else if(strcmp(node->item.prodName, newnode->item.prodName) > 0){
-				node->right = newnode;
-				node->left = NULL;
-			}	
+	newnode->left = NULL;
+    newnode->right = NULL;
+    
+    if (*node == NULL) {
+    	printf("No root detected. Inserting as root.\n");
+        *node = newnode;
+        return;
+    }
+    
+	for(trav; trav != NULL;){
+		if(strcmp(input.prodName, trav->item.prodName) <= 0){
+			trav = trav->left;
 		}
+		else{
+			trav = trav->right;
+		}	
+	}
+
+	if(strcmp(input.prodName, newnode->item.prodName) <= 0){
+		trav = trav->left;
 	}
 	else{
-		printf("No root detected. Inserting as root.\n");
-		newnode->left = NULL;
-		newnode->right = NULL;
+		trav = trav->right;
 	}
 }
 

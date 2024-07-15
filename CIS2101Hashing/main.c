@@ -35,7 +35,20 @@ int main() {
 					printf("Key: %d\n", key);
 					
 					insertData(&array, input, key);
+					break;
+				case 2:
+					break;
+				case 3:
+					printf("Enter data: ");
+					scanf("%d", &input);
 					
+					key = hashKey(input, array);
+					printf("Key: %d\n", key);
+					
+					findData(&array, input, key);
+					break;
+				case 4:
+					break;
 			}
 		}	
 	}	

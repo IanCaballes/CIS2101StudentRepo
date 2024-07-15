@@ -40,6 +40,14 @@ void insertData(Hashmap *arr, int data, int key){
 	}
 }
 
+void findData(Hashmap *array, int choice, int data, int key){
+	if(choice == 1){ //if separate chaining
+		//NEED TO TRAVERSE LINKED LIST FIRST
+		printf("Data %d found in index [%d]\n", data, key);
+	}
+	
+}
+
 bool isEmpty(NodePtr * node){
 if(*node == NULL){
         return true;

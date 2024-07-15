@@ -25,26 +25,8 @@ void addEdge(NodePtr *list, int matrix[][MAX], int x, int y){
 	matrix[y][x] = 1;
 	
 	//still needs fixing
-	if(y == 0){
-		newnode->data = 'A';
-		newnode->next = NULL;
-	}
-	else if(y == 1){
-		newnode->data = 'B';
-		newnode->next = NULL;
-	}
-	else if(y == 2){
-		newnode->data = 'C';
-		newnode->next = NULL;
-	}
-	else if(y == 3){
-		newnode->data = 'D';
-		newnode->next = NULL;
-	}
-	else if(y == 4){
-		newnode->data = 'E';
-		newnode->next = NULL;
-	}
+	newnode->data = 65 + y;
+	newnode->next = NULL;
 	
 	if(list[x] == NULL){
 		list[x] = newnode;
@@ -80,8 +62,8 @@ void printList(NodePtr *list){
 	int i;
 	printf("Adjacency List: \n");
 	for(i = 0; i < MAX; i++){
-		printf("%c = { ", list[i]->data);
-		for (temp = list[i]; temp->next != NULL; temp = temp->next){
+		printf("%c = { ", i + 65);
+		for (temp = list[i]; temp != NULL; temp = temp->next){
 			printf("%c ", temp->data);
 		}
 		printf("}\n");

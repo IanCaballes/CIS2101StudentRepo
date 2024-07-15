@@ -17,5 +17,6 @@ typedef struct{
 void initialize(Hashmap *arr, int size);
 int hashKey(int data, Hashmap arr);
 void insertData(Hashmap *arr, int data, int key);
+void findData(Hashmap *array, int data, int key);
 bool isEmpty(NodePtr * node);
 #endif
